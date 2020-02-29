@@ -71,6 +71,10 @@ int runWM(WindowManager * wm) {
 
     case ConfigureRequest:
       OnConfigureRequest(wm, e.xconfigurerequest);
+      break;
+    case MapRequest:
+      OnMapRequest(wm, e.xmaprequest);
+      break;
     }
   }
 }

@@ -7,5 +7,6 @@ void OnDestroyNotify(WindowManager *, XDestroyWindowEvent);
 void OnReparentNotify(WindowManager *, XReparentEvent);
 
 void OnConfigureRequest(WindowManager *, XConfigureRequestEvent);
+void OnMapRequest(WindowManager *, XMapRequestEvent);
 
 #endif
