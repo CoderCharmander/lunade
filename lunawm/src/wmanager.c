@@ -76,6 +76,9 @@ int runWM(WindowManager * wm) {
     case MapRequest:
       OnMapRequest(wm, e.xmaprequest);
       break;
+    case UnmapNotify:
+      OnUnmapNotify(w, e.xunmap);
+      break;
     }
   }
 }

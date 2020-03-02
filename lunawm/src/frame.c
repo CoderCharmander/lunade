@@ -12,11 +12,13 @@ void FrameClient(WindowManager * wm, Client * c) {
                                  0, 0xaaaaaa, 0xaaaaaa);
   XSelectInput(wm->dpy, c->frame,
                SubstructureRedirectMask | SubstructureNotifyMask);
-  XAddToSaveSet(wm->dpy, c->wnd);
   XReparentWindow(wm->dpy, c->wnd, c->frame, FRAME_BORDERWIDTH, FRAME_TOPWIDTH);
   XMapWindow(wm->dpy, c->frame);
 }
 
 void UnframeClient(WindowManager * wm, Client * c) {
-  
+  XUnmapWindow(wm->dpy, c->frame);
+  XReparentWindow(wm->dpy, c->wnd, wm->root, 0, 0);
+  XRemoveFromSaveSet(wm->dpy, c->wnd);
+  XDestroyWindow(wm->dpy, c->frame);
 }
