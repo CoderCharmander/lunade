@@ -8,5 +8,6 @@ void OnReparentNotify(WindowManager *, XReparentEvent);
 
 void OnConfigureRequest(WindowManager *, XConfigureRequestEvent);
 void OnMapRequest(WindowManager *, XMapRequestEvent);
+void OnUnmapRequest(WindowManager *, XUnmapEvent);
 
 #endif

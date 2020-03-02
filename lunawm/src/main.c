@@ -8,14 +8,16 @@
 
 #include "wmanager.h"
 
-int main() {
+int main(int argc, char** args) {
   WindowManager * wm;
   printf("This is " PACKAGE
          " version " PACKAGE_VERSION
          ", bug report address is " PACKAGE_BUGREPORT "\n");
-  wm = getWMInstance();
+  if (argc > 1) wm = getWMInstance(args[1]);
+  wm = getWMInstance(NULL);
   if (wm == NULL) {
     return -2;
   }
+
   return runWM(wm);
 }

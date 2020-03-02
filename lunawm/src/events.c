@@ -1,13 +1,17 @@
 #include "events.h"
 #include "client.h"
+#include "frame.h"
 
-#include <stdio.h>
+#include <stdlib.h>
 
 void OnCreateNotify(WindowManager * wm, XCreateWindowEvent evt) {
 }
 void OnDestroyNotify(WindowManager * wm, XDestroyWindowEvent evt) {
-  printf("Destroy\n");
-  ClientRemove(ClientGetByWindow(wm->head, evt.window));
+  Client * c = ClientGetByWindow(wm->head, evt.window);
+  if (!c) return;
+  XDestroyWindow(wm->dpy, c->frame);
+  ClientRemove(c);
+  free(c);
 }
 void OnReparentNotify(WindowManager * wm, XReparentEvent evt) {
 }
@@ -23,11 +27,10 @@ void OnConfigureRequest(WindowManager * wm, XConfigureRequestEvent e) {
   XGetGeometry(wm->dpy, wm->root, &root, &x, &y, &w, &h, &bw, &d);
 
   // Center windoz
-  
-  chg.x = (w - chg.width) / 2;
-  chg.y = (h - chg.height) / 2;
-  chg.width = w;
-  chg.height = h;
+  chg.x = e.x;//(w - chg.width) / 2;
+  chg.y = e.y;//(h - chg.height) / 2;
+  chg.width = e.width;
+  chg.height = e.height;
   chg.border_width = e.border_width;
   chg.sibling = e.above;
   chg.stack_mode = e.detail;
@@ -36,14 +39,25 @@ void OnConfigureRequest(WindowManager * wm, XConfigureRequestEvent e) {
 }
 
 void OnMapRequest(WindowManager * wm, XMapRequestEvent e) {
-  printf ("%p\n", wm->head);
+  Client * c;
   if (wm->head == NULL) {
-    wm->head = ClientCreate(wm, e.window, NULL);
+    wm->head = c = ClientCreate(wm, e.window, NULL);
   }
   else {
     int i;
-    Client * cl = ClientFindLast(wm->head, &i);
-    cl->next = ClientCreate(wm, e.window, cl);
+    Client * lc = ClientFindLast(wm->head, &i);
+    lc->next = c = ClientCreate(wm, e.window, lc);
   }
+  // Framez
+  FrameClient(wm, c);
+  XAddToSaveSet(wm->dpy, c->wnd);
   XMapWindow(wm->dpy, e.window);
+}
+
+void OnUnmapNotify(WindowManager * wm, XUnmapEvent e) {
+  Client * c;
+  if (!(c = ClientGetByWindow(wm->head, e.window))) return;
+  UnframeClient(wm, c);
+  ClientRemove(c);
+  free(c);
 }

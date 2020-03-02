@@ -241,6 +241,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -250,6 +251,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lunawm_SOURCES = main.c wmanager.c events.c frame.c client.c
+AM_CFLAGS = -g3
 all: all-am
 
 .SUFFIXES:

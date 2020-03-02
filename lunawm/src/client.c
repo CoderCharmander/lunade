@@ -8,6 +8,7 @@ Client * ClientCreate(WindowManager * wm, Window cw, Client * prev) {
   Client * cl = (Client *)malloc(sizeof(Client));
   cl->wm = wm;
   cl->wnd = cw;
+  cl->frame = NULL;
   cl->next = NULL;
   cl->prev = prev;
   return cl;

@@ -241,6 +241,7 @@ pdfdir = ${docdir}
 prefix = /usr/local
 program_transform_name = s,x,x,
 psdir = ${docdir}
+runstatedir = ${localstatedir}/run
 sbindir = ${exec_prefix}/sbin
 sharedstatedir = ${prefix}/com
 srcdir = .
@@ -250,6 +251,7 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 lunawm_SOURCES = main.c wmanager.c events.c frame.c client.c
+AM_CFLAGS = -g3
 all: all-am
 
 .SUFFIXES:

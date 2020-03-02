@@ -25,7 +25,7 @@ int XError(Display * dpy, XErrorEvent * err) {
   fprintf(stderr, "X error received: %s", errt);
 }
 
-WindowManager* getWMInstance() {
+WindowManager* getWMInstance(char* dpy) {
   static WindowManager * wm;
   if (wm != NULL)
     return wm;
@@ -34,9 +34,9 @@ WindowManager* getWMInstance() {
     fprintf(stderr, "Could not allocate memory\n");
     return NULL;
   }
-  wm->dpy = XOpenDisplay(NULL);
+  wm->dpy = XOpenDisplay(dpy);
   if (wm->dpy == NULL) {
-    fprintf(stderr, "Can't open display; did you start this with xinit or a display manager?\n");
+    fprintf(stderr, "Can't open display; did you start this with xinit or a display manager? Is display argument valid?\n");
     return NULL;
   }
   wm->root = DefaultRootWindow(wm->dpy);
