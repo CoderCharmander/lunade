@@ -21,4 +21,6 @@ Client * ClientFindLast(Client *, int *);
 void     ClientFreeAll(Client *);
 // Remove a client. DOESN'T FREE IT!
 void     ClientRemove(Client *);
+// Get a client by window.
+Client * ClientGetByWindow(Client *, Window);
 #endif

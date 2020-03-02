@@ -6,6 +6,8 @@
 void OnCreateNotify(WindowManager * wm, XCreateWindowEvent evt) {
 }
 void OnDestroyNotify(WindowManager * wm, XDestroyWindowEvent evt) {
+  printf("Destroy\n");
+  ClientRemove(ClientGetByWindow(wm->head, evt.window));
 }
 void OnReparentNotify(WindowManager * wm, XReparentEvent evt) {
 }

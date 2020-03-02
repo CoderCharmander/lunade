@@ -39,8 +39,21 @@ void ClientFreeAll(Client * head) {
 }
 
 void ClientRemove(Client * cl) {
-  cl->prev->next = cl->next;
-  cl->next->prev = cl->prev;
+  if (!cl) return;
+
+  if (cl->prev)
+    cl->prev->next = cl->next;
+  if (cl->next)
+    cl->next->prev = cl->prev;
 
   cl->next = cl->prev = NULL;
+}
+
+Client * ClientGetByWindow(Client * head, Window target) {
+  Client * current = head;
+  while (current->wnd != target && current->next) {
+    current = current->next;
+  }
+  if (current->wnd != target) return NULL;
+  return current;
 }
