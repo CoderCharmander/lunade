@@ -1,4 +1,10 @@
-#include "wmanager.h"
+#ifndef FRAME_H
+#define FRAME_H
 
-void FrameWindow(WindowManager *, Window);
-void UnframeWindow(WindowManager *, Window);
+#include "wmanager.h"
+#include "client.h"
+
+void FrameClient(WindowManager *, Client *);
+void UnframeWindow(WindowManager *, Client *);
+
+#endif

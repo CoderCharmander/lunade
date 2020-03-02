@@ -25,7 +25,16 @@ events.o: events.c events.h wmanager.h \
   /data/data/com.termux/files/usr/include/bits/pthread_types.h \
   /data/data/com.termux/files/usr/include/X11/X.h \
   /data/data/com.termux/files/usr/include/X11/Xfuncproto.h \
-  /data/data/com.termux/files/usr/include/X11/Xosdefs.h
+  /data/data/com.termux/files/usr/include/X11/Xosdefs.h client.h \
+  /data/data/com.termux/files/usr/include/stdio.h \
+  /data/data/com.termux/files/usr/lib/clang/9.0.0/include/stdarg.h \
+  /data/data/com.termux/files/usr/include/string.h \
+  /data/data/com.termux/files/usr/include/xlocale.h \
+  /data/data/com.termux/files/usr/include/bits/strcasecmp.h \
+  /data/data/com.termux/files/usr/include/aarch64-linux-android/asm/fcntl.h \
+  /data/data/com.termux/files/usr/include/asm-generic/fcntl.h \
+  /data/data/com.termux/files/usr/include/bits/seek_constants.h \
+  /data/data/com.termux/files/usr/include/bits/struct_file.h
 
 events.h:
 
@@ -84,3 +93,23 @@ wmanager.h:
 /data/data/com.termux/files/usr/include/X11/Xfuncproto.h:
 
 /data/data/com.termux/files/usr/include/X11/Xosdefs.h:
+
+client.h:
+
+/data/data/com.termux/files/usr/include/stdio.h:
+
+/data/data/com.termux/files/usr/lib/clang/9.0.0/include/stdarg.h:
+
+/data/data/com.termux/files/usr/include/string.h:
+
+/data/data/com.termux/files/usr/include/xlocale.h:
+
+/data/data/com.termux/files/usr/include/bits/strcasecmp.h:
+
+/data/data/com.termux/files/usr/include/aarch64-linux-android/asm/fcntl.h:
+
+/data/data/com.termux/files/usr/include/asm-generic/fcntl.h:
+
+/data/data/com.termux/files/usr/include/bits/seek_constants.h:
+
+/data/data/com.termux/files/usr/include/bits/struct_file.h:

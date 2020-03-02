@@ -1,4 +1,7 @@
 #include "events.h"
+#include "client.h"
+
+#include <stdio.h>
 
 void OnCreateNotify(WindowManager * wm, XCreateWindowEvent evt) {
 }
@@ -21,8 +24,8 @@ void OnConfigureRequest(WindowManager * wm, XConfigureRequestEvent e) {
   
   chg.x = (w - chg.width) / 2;
   chg.y = (h - chg.height) / 2;
-  chg.width = e.width;
-  chg.height = e.height;
+  chg.width = w;
+  chg.height = h;
   chg.border_width = e.border_width;
   chg.sibling = e.above;
   chg.stack_mode = e.detail;
@@ -31,5 +34,14 @@ void OnConfigureRequest(WindowManager * wm, XConfigureRequestEvent e) {
 }
 
 void OnMapRequest(WindowManager * wm, XMapRequestEvent e) {
+  printf ("%p\n", wm->head);
+  if (wm->head == NULL) {
+    wm->head = ClientCreate(wm, e.window, NULL);
+  }
+  else {
+    int i;
+    Client * cl = ClientFindLast(wm->head, &i);
+    cl->next = ClientCreate(wm, e.window, cl);
+  }
   XMapWindow(wm->dpy, e.window);
 }

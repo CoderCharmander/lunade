@@ -1,0 +1,24 @@
+#include "client.h"
+#include "frame.h"
+
+#include <stdlib.h>
+
+Client * ClientCreate(WindowManager * wm, Window cw) {
+  Client * cl = (Client *)malloc(sizeof(Client));
+  cl->wm = wm;
+  cl->wnd = cw;
+  cl->next = NULL;
+  return cl;
+}
+
+Client * ClientFindLast(Client * head, int * count) {
+  Client * current = head;
+  if (count)
+    *count = 0;
+  while (current->next) {
+    if (count)
+      *count++;
+    current = current->next;
+  }
+  return current;
+}

@@ -99,7 +99,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_lunawm_OBJECTS = main.$(OBJEXT) wmanager.$(OBJEXT) events.$(OBJEXT)
+am_lunawm_OBJECTS = main.$(OBJEXT) wmanager.$(OBJEXT) events.$(OBJEXT) \
+	frame.$(OBJEXT) client.$(OBJEXT)
 lunawm_OBJECTS = $(am_lunawm_OBJECTS)
 lunawm_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_$(V))
@@ -117,7 +118,8 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I. -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/../depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = ./$(DEPDIR)/events.Po ./$(DEPDIR)/main.Po \
+am__depfiles_remade = ./$(DEPDIR)/client.Po ./$(DEPDIR)/events.Po \
+	./$(DEPDIR)/frame.Po ./$(DEPDIR)/main.Po \
 	./$(DEPDIR)/wmanager.Po
 am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -247,7 +249,7 @@ target_alias =
 top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
-lunawm_SOURCES = main.c wmanager.c events.c
+lunawm_SOURCES = main.c wmanager.c events.c frame.c client.c
 all: all-am
 
 .SUFFIXES:
@@ -334,7 +336,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/client.Po # am--include-marker
 include ./$(DEPDIR)/events.Po # am--include-marker
+include ./$(DEPDIR)/frame.Po # am--include-marker
 include ./$(DEPDIR)/main.Po # am--include-marker
 include ./$(DEPDIR)/wmanager.Po # am--include-marker
 
@@ -485,7 +489,9 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/events.Po
+		-rm -f ./$(DEPDIR)/client.Po
+	-rm -f ./$(DEPDIR)/events.Po
+	-rm -f ./$(DEPDIR)/frame.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f ./$(DEPDIR)/wmanager.Po
 	-rm -f Makefile
@@ -533,7 +539,9 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/events.Po
+		-rm -f ./$(DEPDIR)/client.Po
+	-rm -f ./$(DEPDIR)/events.Po
+	-rm -f ./$(DEPDIR)/frame.Po
 	-rm -f ./$(DEPDIR)/main.Po
 	-rm -f ./$(DEPDIR)/wmanager.Po
 	-rm -f Makefile
