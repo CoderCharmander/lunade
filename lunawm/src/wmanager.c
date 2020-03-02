@@ -40,6 +40,7 @@ WindowManager* getWMInstance() {
     return NULL;
   }
   wm->root = DefaultRootWindow(wm->dpy);
+  wm->head = NULL;
   return wm;
 }
 
